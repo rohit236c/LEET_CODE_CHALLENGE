@@ -96,15 +96,15 @@ void leet_4th() {
 	// printV(nums);
 }
 vector<vector<string>> groupAnagrams(vector<string>& strs) {
-	map<string,VS>m;
-	for(string str: strs) {
-		
+	map<string, VS>m;
+	for (string str : strs) {
+
 		string cur = str;
 		sort(cur.begin(), cur.end());
-		if(m.find(cur) == m.end()) {
+		if (m.find(cur) == m.end()) {
 			m[cur].PB(str);
 		} else {
-			m[cur].PB(str); 
+			m[cur].PB(str);
 		}
 	}
 	int idx = 0;
@@ -114,7 +114,7 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 	// }
 	std::vector<std::vector<string>> ans(m.size());
 
-	for(auto itr: m) {
+	for (auto itr : m) {
 		ans[idx] = (itr.second);
 		idx++;
 	}
@@ -124,19 +124,42 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 void solve_six() {
 	VS data{"eat", "tea", "tan", "ate", "nat", "bat"};
 	std::vector<std::vector<string>> ans = groupAnagrams(data);
-	for(VS str: ans) {
-		for(string s: str) {
+	for (VS str : ans) {
+		for (string s : str) {
 			cout << s << " ";
 		}
 		cout << endl;
 	}
-
 }
+int countElements(vector<int>& arr) {
+	if(arr.size() == 1) return 0;
+
+	VI count(1100, 0);
+
+	for (int num : arr) {
+		count[num]++;
+	}
+	int ans = 0;
+	for (int num : arr) {
+		int c = count[num + 1];
+		if (c > 0) ans++;
+
+	}
+
+	return ans;
+}
+void solve_seven() {
+	VI nums{1,1};
+
+	cout << countElements(nums);
+}
+
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 	// solve();
-	solve_six();
+	// solve_six();
+	solve_seven();
 	return 0;
 }
