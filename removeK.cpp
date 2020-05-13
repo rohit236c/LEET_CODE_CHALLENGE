@@ -11,6 +11,7 @@ using namespace std;
 #define EPS 1e-9
 #define MOD 1000000007
 typedef pair<int, int> PII;
+typedef pair<char, int>pcc;
 typedef vector<int> VI;
 typedef vector<string> VS;
 typedef vector<PII> VII;
@@ -23,22 +24,28 @@ typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
 
-int singleNonDuplicate(vector<int>& nums) {
+string removeKdigits(string num, int k) {
+	string ans;
+	for(char c: num) {
 
-	int start = 0, end = nums.size() - 1;
-	while ( start < end ) {
-		int mid = start + (end - start) / 2;
-		if ( nums[mid] == nums[mid ^ 1] )
-			start = mid + 1;
-		else
-			end = mid;
+		while(ans.size() && ans.back() > c && k) {
+			ans.pop_back();
+			k--;
+		}
+		if(ans.size() != 0 || c!= '0') ans.push_back(c);
 	}
-	return nums[start];
+	while(ans.size() && k) {
+		ans.pop_back();
+		k--;
+	}
+	if(ans.size() == 0) return "0";
+
+	return ans;
+
 }
 void solve() {
-	VI nums{1, 1, 2, 2, 3, 4, 4, 8, 8};
-
-	// cout << singleNonDuplicate(nums);
+	string s = "219";
+	cout << removeKdigits(s, 1);
 }
 
 int main() {
@@ -49,3 +56,4 @@ int main() {
 
 	return 0;
 }
+
