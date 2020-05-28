@@ -22,7 +22,8 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
-
+// if x == even -- x = 2*(x/2);
+// if x == odd -- x = 2*(x/2) + 1;
 vector<int> countBits(int num) {
     vector<int> dp(num + 1, 0);
     if (num == 0) return dp;
